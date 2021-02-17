@@ -48,10 +48,15 @@ def loadData(catalog):
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
+    print("Loading start")
     loadBooks(catalog)
+    print("Books loaded")
     loadTags(catalog)
+    print("Tags loaded")
     loadBooksTags(catalog)
+    print("Book Tags Loaded")
     sortBooks(catalog)
+    print("Books sorted")
 
 
 def loadBooks(catalog):
@@ -60,7 +65,7 @@ def loadBooks(catalog):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    booksfile = cf.data_dir + 'GoodReads/books-small.csv'
+    booksfile = cf.data_dir + 'GoodReads/books.csv'
     input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
     for book in input_file:
         model.addBook(catalog, book)
@@ -80,7 +85,7 @@ def loadBooksTags(catalog):
     """
     Carga la información que asocia tags con libros.
     """
-    booktagsfile = cf.data_dir + 'GoodReads/book_tags-small.csv'
+    booktagsfile = cf.data_dir + 'GoodReads/book_tags.csv'
     input_file = csv.DictReader(open(booktagsfile, encoding='utf-8'))
     for booktag in input_file:
         model.addBookTag(catalog, booktag)
